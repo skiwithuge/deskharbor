@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Codex (ChatGPT)
+Comment=OpenAI desktop app with Codex
+Exec=codex-app %U
+TryExec=/usr/lib/chatgpt/ChatGPT
+Icon=chatgpt
+Categories=Development;
+MimeType=x-scheme-handler/codex;
+StartupNotify=true

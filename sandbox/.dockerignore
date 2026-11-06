@@ -1,0 +1,6 @@
+tests
+__pycache__
+**/__pycache__
+README.md
+setup-host.sh
+build.sh

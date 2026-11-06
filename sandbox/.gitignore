@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+.setup.env
+.setup.env.tmp

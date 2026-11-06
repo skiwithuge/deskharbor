@@ -1,0 +1,10 @@
+/.deskharbor/
+/.env
+/.env.*
+!/.env.example
+/compose.local.*
+/secrets/*
+!/secrets/.gitkeep
+**/__pycache__/
+*.pyc
+.local/

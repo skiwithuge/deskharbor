@@ -1,0 +1,6 @@
+.fail
+# Same-user Unix socket only: no hardware discovery, TCP listener or host mount.
+load-module module-native-protocol-unix
+load-module module-null-sink sink_name=workstation rate=48000 channels=2 sink_properties=device.description=Workstation
+set-default-sink workstation
+set-default-source workstation.monitor

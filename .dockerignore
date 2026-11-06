@@ -1,0 +1,9 @@
+.git
+.deskharbor
+.env
+.env.*
+compose.local.*
+secrets
+*.tar.gz
+tests
+**/__pycache__

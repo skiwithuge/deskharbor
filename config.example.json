@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "project_name": "deskharbor",
+  "image": "deskharbor:local",
+  "hostname": "deskharbor",
+  "username": "deskharbor",
+  "uid": 1000,
+  "gid": 1000,
+  "projects": "/path/to/projects",
+  "bind": "127.0.0.1",
+  "timezone": "UTC",
+  "features": {
+    "browser": true,
+    "vnc": false,
+    "ssh": true,
+    "audio": false,
+    "gpu": false
+  },
+  "ports": {
+    "browser": 6080,
+    "vnc": 5901,
+    "ssh": 20222,
+    "audio": 6081
+  },
+  "extra_ports": [],
+  "mounts": [],
+  "ssh_auth": "key",
+  "display": {
+    "width": 1920,
+    "height": 1080,
+    "mode": "auto"
+  },
+  "restore_tools": true,
+  "cpu_image": "ubuntu:24.04",
+  "cuda_image": "nvidia/cuda:12.9.2-devel-ubuntu24.04",
+  "extra_apt_packages": "",
+  "volumes": {
+    "home": "deskharbor_home",
+    "ssh_host_keys": "deskharbor_ssh_host_keys",
+    "brew": "deskharbor_brew"
+  },
+  "adopted": false
+}

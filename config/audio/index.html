@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeskHarbor workstation audio</title><link rel="stylesheet" href="/audio.css"><script src="/audio.js" defer></script></head>
+<body><main><h1>Workstation audio</h1><p>Listen to Chrome and desktop applications on this device. Keep this page open while using VNC or Remmina.</p>
+<p><label for="mode">Playback</label> <select id="mode"><option value="pcm">Live audio (less buffering)</option><option value="mp3">MP3 (less bandwidth, more delay)</option></select></p>
+<p><label for="volume">Volume</label> <input id="volume" type="range" min="0" max="1" step="0.01" value="1"></p>
+<audio id="audio" preload="none" controls hidden></audio>
+<div><button id="start">Start audio</button> <button id="stop" disabled>Stop</button> <button id="live" disabled>Return to live</button></div>
+<p id="status" role="status">Audio is off.</p><p class="hint">Playback may lag behind the desktop. Use “Return to live” after pausing or when switching devices. Stop playback before leaving this client. Phones may suspend audio in the background.</p>
+<p class="hint">This page plays the shared desktop output. It does not access your microphone.</p></main></body></html>

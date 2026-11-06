@@ -1,0 +1,2 @@
+// Record manually installed additions after apt transactions.
+DPkg::Post-Invoke { "/opt/workstation/record-system-tools.sh || echo 'Workstation: could not record installed packages' >&2"; };
