@@ -97,11 +97,10 @@ See [migration guide](docs/migration.md). Importing configuration never starts/r
 
 ## Acknowledgments
 
-Thanks to the people and tools that helped shape DeskHarbor:
+Thanks to the people who helped shape DeskHarbor:
 
 - **Lucía Subatin**, for [Running Antigravity on a browser tab](https://medium.com/google-cloud/running-antigravity-on-a-browser-tab-6298bb7e47c4), an inspiration for running a remote development desktop through VNC and noVNC.
 - **rawritude**, for [antigravity-remote-docker](https://github.com/rawritude/antigravity-remote-docker), which helped inspire the original remote workstation setup.
-- **Google Gemini**, for assistance during design and development.
 
 ## Validation and license
 
