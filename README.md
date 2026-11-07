@@ -95,6 +95,14 @@ This custom sandbox is experimental and shares the host kernel. Project contents
 
 See [migration guide](docs/migration.md). Importing configuration never starts/restarts Docker. Adoption requires the existing named volumes and refuses empty replacements. Do not run two definitions concurrently against the same home.
 
+## Acknowledgments
+
+Thanks to the people and tools that helped shape DeskHarbor:
+
+- **Lucía Subatin**, for [Running Antigravity on a browser tab](https://medium.com/google-cloud/running-antigravity-on-a-browser-tab-6298bb7e47c4), an inspiration for running a remote development desktop through VNC and noVNC.
+- **rawritude**, for [antigravity-remote-docker](https://github.com/rawritude/antigravity-remote-docker), which helped inspire the original remote workstation setup.
+- **Google Gemini**, for assistance during design and development.
+
 ## Validation and license
 
 Run `python3 -m unittest discover -s tests -p 'test_*.py'` for host configuration/TUI planning tests. See [testing](docs/testing.md) for container, CUDA, audio and sandbox checks and their prerequisites. Host Docker runtime checks must be run on a real Docker host.
