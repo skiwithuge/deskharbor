@@ -24,7 +24,7 @@ cd deskharbor
 ./deskharbor
 ```
 
-The repository must be accessible to your GitHub account while it is private. Public installation requires no GitHub login once the repository is public. Python on Ubuntu includes curses; the installation guide includes a check.
+Cloning the public repository requires no GitHub account. Python on Ubuntu includes curses; the installation guide includes a check.
 
 The host TUI offers First setup / Configuration, Start / apply, Status, Applications, Terminal, Stop, Checks, Logs, source updates, and the optional agent sandbox manager. Use arrows to move, Enter/Space to choose, and Esc/Q to go back. A terminal of at least 64 columns × 20 rows is required. Opening the menu starts no installers.
 
@@ -60,7 +60,7 @@ ssh -p 20222 -L 6080:127.0.0.1:6080 -L 6081:127.0.0.1:6081 <user>@<docker-host>
 
 Then open `http://127.0.0.1:6080/` in the **client's browser**. If audio is enabled, open `http://127.0.0.1:6081/` on the client, sign in with the workstation username/VNC password and press Start audio. Keep that page open when using Remmina. Live PCM uses about 1.5 Mbit/s; MP3 uses less bandwidth but more buffering. Audio and VNC video are separate streams and are not synchronized. No host audio socket, sound device or microphone is shared.
 
-One browser/Remmina client controls one shared desktop. Automatic resolution follows the current client's viewport; browser local scaling preserves the existing remote resolution. Run `display-mode auto` or `display-mode fixed 1920 1080` inside the workstation. Remmina-specific helper scripts remain available in `scripts/` for hosts that need the documented resize workaround; they change only the client launcher. noVNC uses its upstream clipboard panel; there is no custom automatic clipboard synchronization.
+One browser/Remmina client controls one shared desktop. Automatic resolution follows the current client's viewport; browser local scaling preserves the existing remote resolution. Run `display-mode auto` or `display-mode fixed 1920 1080` inside the workstation. Remmina-specific helper scripts remain available in `scripts/` for hosts that need the documented resize workaround; they change only the client launcher. After updating these helper scripts, rerun `scripts/build-remmina-client.sh` before using a previously built helper library. noVNC uses its upstream clipboard panel; there is no custom automatic clipboard synchronization.
 
 ## Applications and persistence
 

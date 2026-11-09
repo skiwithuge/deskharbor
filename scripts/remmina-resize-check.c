@@ -40,7 +40,7 @@ int main(void) {
     memcpy(incoming + 32, &flags, 4);
     CHECK(HandleRFBServerMessage(client), "screen advertisement handling");
     CHECK(client->screen.width == width, "valid screen ID zero was ignored");
-    const char *zoom = getenv("LEGION_REMMINA_ZOOM");
+    const char *zoom = getenv("DESKHARBOR_REMMINA_ZOOM");
     unsigned int column = zoom && strcmp(zoom, "125") == 0 ? 2 :
         zoom && strcmp(zoom, "150") == 0 ? 4 : 0;
     const unsigned int cases[][6] = {

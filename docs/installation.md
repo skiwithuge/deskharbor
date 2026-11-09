@@ -84,7 +84,7 @@ cd deskharbor
 ./deskharbor
 ```
 
-While the repository is private, your GitHub account needs access; use your authenticated Git workflow if HTTPS cloning fails. Once public, the command works without a GitHub account.
+The public repository can be downloaded without a GitHub account.
 
 A menu should open. Make the terminal at least 64 columns wide and 20 rows high. Navigate with arrows, choose with Enter/Space, and go back with Esc/Q. Opening the menu does not start the workstation.
 
@@ -132,7 +132,7 @@ DeskHarbor checks for the host GPU and runtime; it does not install drivers or r
 | Cannot connect to the Docker daemon | On the Ubuntu setup above, check `sudo systemctl status docker`; start it with `sudo systemctl start docker` if stopped. |
 | `compose` is not a Docker command | Install `docker-compose-plugin` from Docker's configured package repository. |
 | Python cannot import `curses` | Install your distribution's Python curses package; on Ubuntu, check that the system `python3` is being used. |
-| Repository not found / authentication failed | The repository may still be private. Use a GitHub account with access; no Docker change is needed. |
+| Repository cannot be downloaded | Check the repository URL and your network/proxy connection. The public HTTPS URL does not require GitHub login. |
 | Menu cannot fit / terminal error | Use an interactive terminal, enlarge it to at least 64×20 and launch again. |
 | Port already allocated | Choose unused service ports in Configuration; leave existing services alone. |
 | Browser cannot connect | Wait for Start / apply to finish, then check Status and Logs. On another device, use the host IP and configure LAN/VPN access. |

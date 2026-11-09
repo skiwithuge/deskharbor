@@ -10,7 +10,7 @@
 +  rfbExtDesktopScreen screen = client->screen;
 +  /* Launcher-only zoom: Remmina scales drawing and pointer coordinates to
 +     its viewport in dynamic mode; request fewer remote pixels for enlargement. */
-+  const char *zoom = getenv("LEGION_REMMINA_ZOOM");
++  const char *zoom = getenv("DESKHARBOR_REMMINA_ZOOM");
 +  if (zoom && strcmp(zoom, "125") == 0) {
 +    width = (uint16_t)(((unsigned int)width * 4 + 2) / 5);
 +    height = (uint16_t)(((unsigned int)height * 4 + 2) / 5);

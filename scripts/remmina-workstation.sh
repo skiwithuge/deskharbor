@@ -44,6 +44,6 @@ if pgrep -u "$(id -u)" -x remmina >/dev/null; then
     exit 1
 fi
 echo "Opening Remmina with ${zoom}% enlargement and automatic resolution."
-exec env GDK_BACKEND=x11 LEGION_REMMINA_ZOOM="$zoom" \
+exec env GDK_BACKEND=x11 DESKHARBOR_REMMINA_ZOOM="$zoom" \
     LD_LIBRARY_PATH="$root/.local/remmina/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
     remmina "${window_options[@]}" --connect "$profile"

@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory() as directory:
     binaries.mkdir()
     for name, content in {
         'pgrep': '#!/bin/sh\nexit 1\n',
-        'remmina': '#!/bin/sh\nprintf "ZOOM=%s BACKEND=%s\\n" "$LEGION_REMMINA_ZOOM" "$GDK_BACKEND"\nprintf "ARG=%s\\n" "$@"\n',
+        'remmina': '#!/bin/sh\nprintf "ZOOM=%s BACKEND=%s\\n" "$DESKHARBOR_REMMINA_ZOOM" "$GDK_BACKEND"\nprintf "ARG=%s\\n" "$@"\n',
     }.items():
         path = binaries / name
         path.write_text(content)
@@ -26,7 +26,7 @@ with tempfile.TemporaryDirectory() as directory:
     profile = root / 'profile with spaces.remmina'
     original = '[remmina]\nprotocol=VNC\nscale=2\npassword=public-test-fixture\n'
     profile.write_text(original)
-    environment = dict(os.environ, PATH=f'{binaries}:{os.environ["PATH"]}', LEGION_REMMINA_ZOOM='150')
+    environment = dict(os.environ, PATH=f'{binaries}:{os.environ["PATH"]}', DESKHARBOR_REMMINA_ZOOM='150')
 
     def run(arguments):
         return subprocess.run([str(launcher), *arguments], env=environment, capture_output=True, text=True)

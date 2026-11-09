@@ -19,7 +19,7 @@ RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
 RUN patch -p1 < remmina-resize.patch \
     && cmake --build build --target vncclient -j2 \
     && /src/check-resize \
-    && LEGION_REMMINA_ZOOM=100 /src/check-resize \
-    && LEGION_REMMINA_ZOOM=125 /src/check-resize \
-    && LEGION_REMMINA_ZOOM=150 /src/check-resize
+    && DESKHARBOR_REMMINA_ZOOM=100 /src/check-resize \
+    && DESKHARBOR_REMMINA_ZOOM=125 /src/check-resize \
+    && DESKHARBOR_REMMINA_ZOOM=150 /src/check-resize
 CMD ["sh", "-c", "set -eu; staging=$(mktemp -d /out/.export.XXXXXX); trap 'rm -rf \"$staging\"' EXIT; cp -a /src/build/libvncclient.so* \"$staging/\"; chown -R \"$OUTPUT_UID:$OUTPUT_GID\" \"$staging\"; for library in \"$staging\"/*; do mv -Tf \"$library\" \"/out/${library##*/}\"; done"]
