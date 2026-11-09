@@ -83,6 +83,7 @@ def settings(ui, root, original, initial_pending=None):
             ('projects', 'Project folder: ' + c['projects']), ('credentials', 'Credentials: VNC password / SSH key'),
             ('ports', 'Service and development ports'), ('mounts', 'Advanced: shared host settings'),
             ('display', 'Display fallback and sizing'), ('save', 'Save configuration'), ('back', 'Cancel / back')],
+            'Workstation user: ' + c['username'] + ' (chosen during first setup)\n' +
             'Changes are staged here. Save preserves data; Start / apply changes the running container.')
         if choice in (None, 'back'): return None
         try:
@@ -164,6 +165,12 @@ def execute(ui, operation):
 def setup(ui, root):
     c = config.defaults()
     c['uid'], c['gid'] = __import__('os').getuid(), __import__('os').getgid()
+    while True:
+        try:
+            c['username'] = config.validate_username(ui.input('Workstation username (inside the container; used for SSH)', c['username']))
+            break
+        except ValueError as error:
+            ui.message('Choose a valid username', str(error))
     c['projects'] = ui.input('Folder to access inside the workstation', c['projects'])
     pending = {'secrets/vnc_password': config.validate_password('vnc_password', ui.secret('Choose VNC / audio password: 6–8 ASCII characters'))}
     keys = sorted((Path.home() / '.ssh').glob('*.pub'))

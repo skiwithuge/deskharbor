@@ -25,7 +25,7 @@ Run management commands on the Linux Docker host, as your normal user.
     commands = parser.add_subparsers(dest='command', title='commands', metavar='COMMAND')
     descriptions = {
         'setup': ('Configure a new workstation (alias: init)',
-                  'Choose a project folder, credentials and features interactively. Saves a private profile; does not start Docker. Use configure for an existing profile.'),
+                  'Choose the workstation username, project folder, credentials and features interactively. Saves a private profile; does not start Docker. Use configure for an existing profile.'),
         'configure': ('Edit features, access, folders and ports',
                       'Edit the existing profile in the interactive menu. Changes stay staged until Save. Use up afterward to apply them to the workstation.'),
         'up': ('Build if needed, then start or apply changes',

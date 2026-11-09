@@ -92,11 +92,14 @@ A menu should open. Make the terminal at least 64 columns wide and 20 rows high.
 
 Choose **First setup / Configuration**:
 
-1. Choose a host project folder. The default is suitable for a new installation; DeskHarbor creates it when starting. Files there are shared with the workstation.
-2. Set a VNC password of 6–8 ASCII characters. This is the password used to open the desktop; it is separate from your Linux login.
-3. Choose SSH authentication. Use an existing public key ending in `.pub`, or choose a separate SSH password of at least 12 characters. Supply only the public key, never a private key. Password authentication is available if you do not have a key yet.
-4. Keep browser desktop and SSH enabled, local networking selected, and GPU off for the first CPU-mode test. Optional audio and native VNC can be enabled later.
-5. Review the configuration and choose **Save**.
+1. Choose the workstation username, or press Enter to keep `deskharbor`. Use 1–31 lowercase letters, digits, underscores or hyphens, starting with a letter or underscore. The account must not be `root`. It is the SSH login and home directory name inside the container, independent of your host username.
+2. Choose a host project folder. The default is suitable for a new installation; DeskHarbor creates it when starting. Files there are shared with the workstation.
+3. Set a VNC password of 6–8 ASCII characters. This is the password used to open the desktop; it is separate from your Linux login.
+4. Choose SSH authentication. Use an existing public key ending in `.pub`, or choose a separate SSH password of at least 12 characters. Supply only the public key, never a private key. Password authentication is available if you do not have a key yet.
+5. Keep browser desktop and SSH enabled, local networking selected, and GPU off for the first CPU-mode test. Optional audio and native VNC can be enabled later.
+6. Review the configuration and choose **Save**.
+
+The username is chosen during first setup and shown in Configuration and Plan afterward. There is no automatic rename for an existing profile: its home, application paths and shared settings depend on that identity.
 
 Keys are optional. If you want a dedicated key, run `ssh-keygen -t ed25519 -f ~/.ssh/deskharbor_ed25519` on the computer you will connect from, then provide the contents/file `deskharbor_ed25519.pub` during setup. Keep the file without `.pub` on that client.
 

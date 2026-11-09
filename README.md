@@ -28,7 +28,7 @@ The repository must be accessible to your GitHub account while it is private. Pu
 
 The host TUI offers First setup / Configuration, Start / apply, Status, Applications, Terminal, Stop, Checks, Logs, source updates, and the optional agent sandbox manager. Use arrows to move, Enter/Space to choose, and Esc/Q to go back. A terminal of at least 64 columns × 20 rows is required. Opening the menu starts no installers.
 
-First setup asks for your project folder, a VNC password, and an SSH public key (or a separate SSH password). Review everything on one configuration screen and choose Save. Then choose Start / apply to build and launch. Sign in to applications interactively afterward.
+First setup asks for a workstation username (default: `deskharbor`), your project folder, a VNC password, and an SSH public key (or a separate SSH password). The username identifies the container account, its home and SSH login; it does not rename your host account. It is chosen when creating the profile; existing usernames are preserved, and in-place account renaming is not provided. Review everything on one configuration screen and choose Save. Then choose Start / apply to build and launch. Sign in to applications interactively afterward.
 
 The generated configuration enables browser desktop and SSH on **localhost only**. NVIDIA/CUDA, native VNC/Remmina, desktop audio, development ports, shared host settings and agent isolation are explicit choices. Changing features never deletes persistent volumes. Applications and files remain when services are stopped or disabled.
 

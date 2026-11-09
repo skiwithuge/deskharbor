@@ -15,6 +15,14 @@ TARGET_PORTS = {'browser': 6080, 'vnc': 5901, 'ssh': 22, 'audio': 6081}
 SHARED_SETTINGS = ('.codex', '.gemini', '.antigravity', '.antigravity-ide')
 
 
+def validate_username(value):
+    if not isinstance(value, str) or not re.fullmatch(r'[a-z_][a-z0-9_-]{0,30}', value):
+        raise ValueError('Use 1–31 lowercase letters, digits, underscores or hyphens; start with a letter or underscore')
+    if value == 'root':
+        raise ValueError('Choose a non-root workstation username')
+    return value
+
+
 def defaults():
     return {'version': 1, 'project_name': 'deskharbor', 'image': 'deskharbor:local',
             'hostname': 'deskharbor', 'username': 'deskharbor', 'uid': os.getuid(), 'gid': os.getgid(),
@@ -48,8 +56,7 @@ def validate(config):
         raise ValueError('Unsupported configuration version')
     if not re.fullmatch(r'[a-z0-9][a-z0-9_-]*', c['project_name']):
         raise ValueError('Invalid Compose project name')
-    if not re.fullmatch(r'[a-z_][a-z0-9_-]{0,30}', c['username']):
-        raise ValueError('Invalid Linux username')
+    validate_username(c['username'])
     for field in ('uid', 'gid'):
         if type(c[field]) is not int or not 0 < c[field] < 2**31:
             raise ValueError('UID/GID must be positive non-root integers')

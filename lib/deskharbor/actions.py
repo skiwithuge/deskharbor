@@ -62,7 +62,7 @@ def prerequisites(root, c):
 
 def plan(c):
     enabled = ', '.join(key for key, value in c['features'].items() if value)
-    lines = ['Enabled: ' + enabled, 'Network bind: ' + c['bind'],
+    lines = ['Workstation user: ' + c['username'], 'Enabled: ' + enabled, 'Network bind: ' + c['bind'],
              'Projects: ' + c['projects'], 'SSH authentication: ' + c['ssh_auth'],
              'Persistent volumes: ' + ', '.join(c['volumes'].values()),
              'Shared settings mounts: ' + str(len(c['mounts'])),
