@@ -186,16 +186,12 @@ def main(root):
             ('apps', 'Install / update applications'), ('shell', 'Open workstation terminal'),
             ('stop', 'Stop workstation'), ('doctor', 'Check prerequisites'), ('logs', 'Service logs'),
             ('update', 'Update DeskHarbor source'), ('sandbox', 'Advanced: agent sandbox (experimental)'),
-            ('import', 'Advanced: import an existing workstation'), ('exit', 'Exit')],
+            ('exit', 'Exit')],
             ('Imported installation: Apply may replace its running container.\n' if imported else '') +
             'Local settings and secrets stay outside Git.\nStopping/disabling features does not remove persistent data.')
         if choice in (None, 'exit'): return
         def operation():
             if choice == 'setup': setup(ui, root)
-            elif choice == 'import':
-                source = ui.input('Existing workstation repository path')
-                config.legacy(root, source)
-                ui.message('Imported for review', 'No containers were changed. Review Configuration and volumes before applying.')
             elif choice == 'configure': settings(ui, root, config.load(root))
             elif choice == 'update': actions.update(root)
             else:
@@ -204,6 +200,17 @@ def main(root):
                     print('\n' + actions.plan(c))
                     if ui.menu('Apply configuration', [('apply', 'Apply — build/start/recreate if needed'), ('back', 'Back')],
                                'Save open work first. Existing named volumes are retained.') != 'apply': return
+                if choice == 'logs':
+                    print('Live service logs — Ctrl+C returns to the menu; services keep running.', flush=True)
+                    try:
+                        actions.perform(root, choice, c)
+                    except KeyboardInterrupt:
+                        pass
+                    except subprocess.CalledProcessError as error:
+                        # Compose may report SIGINT as a signal or shell exit status.
+                        if error.returncode not in (-2, 130):
+                            raise
+                    return
                 actions.perform(root, choice, c)
                 if choice in ('status', 'doctor', 'up'): input('\nPress Enter to return to the menu.')
         execute(ui, operation)

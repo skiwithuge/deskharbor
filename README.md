@@ -10,11 +10,21 @@ DeskHarbor is for a Linux x86-64 Docker host. The thin client can be Linux, macO
 
 ## Start here
 
-Install Docker Engine with the Compose v2 plugin, Python 3 (including curses), and OpenSSH client tools on your **host**. Docker must be usable by your normal account. DeskHarbor checks prerequisites; it does not silently install drivers or modify host security policies.
+**New installation? Follow the [step-by-step installation guide](docs/installation.md).** It covers preparing Ubuntu, installing Docker, downloading DeskHarbor, choosing credentials and opening your first desktop. Other Linux distributions have separate prerequisite links.
+
+Run DeskHarbor in a terminal on the **Linux computer that will run the workstation**, using your normal account. Your browser or Remmina can run on a different device. Host management commands run outside the workstation container.
+
+Already have Docker working without `sudo`? On Ubuntu, install the remaining host tools and download the project:
 
 ```bash
+sudo apt update
+sudo apt install -y git python3 openssh-client
+git clone https://github.com/skiwithuge/deskharbor.git
+cd deskharbor
 ./deskharbor
 ```
+
+The repository must be accessible to your GitHub account while it is private. Public installation requires no GitHub login once the repository is public. Python on Ubuntu includes curses; the installation guide includes a check.
 
 The host TUI offers First setup / Configuration, Start / apply, Status, Applications, Terminal, Stop, Checks, Logs, source updates, and the optional agent sandbox manager. Use arrows to move, Enter/Space to choose, and Esc/Q to go back. A terminal of at least 64 columns × 20 rows is required. Opening the menu starts no installers.
 
@@ -68,6 +78,8 @@ The workstation user has passwordless sudo **inside the container**. Chrome and 
 
 ## Commands and updates
 
+Run `./deskharbor --help` for the command list with explanations and examples. Use `./deskharbor COMMAND --help` (for example, `./deskharbor update --help`) for details about one command.
+
 ```bash
 ./deskharbor setup        # interactive first setup
 ./deskharbor configure    # settings, features, credentials, mounts and ports
@@ -85,6 +97,8 @@ The workstation user has passwordless sudo **inside the container**. Chrome and 
 
 Source updates do not restart the desktop; apply them when ready with Start / apply or `./deskharbor up`. Save open work before applying configuration/image changes: Docker may recreate the container. Credential edits are saved only when you save the configuration. Retry/back preserves your selected configuration after a failed operation. No menu operation runs `down -v`, prunes Docker, or automatically uninstalls applications.
 
+In the host menu, press **Ctrl+C** to leave Service logs and return to the menu. This stops only log viewing; the workstation keeps running.
+
 ## Optional agent sandbox
 
 The advanced sandbox manager launches project-scoped disposable sibling containers via a restricted host SSH helper. It is disabled/not installed in the base setup. It has separate per-project homes, filtered source mounts, public-only proxy access and optional GPU permissions. It requires additional host FUSE/OpenSSH setup and sudo; it is not nested Docker and does not expose the Docker socket to the workstation. See [sandbox documentation](sandbox/README.md).
@@ -93,7 +107,7 @@ This custom sandbox is experimental and shares the host kernel. Project contents
 
 ## Adopt an existing installation
 
-See [migration guide](docs/migration.md). Importing configuration never starts/restarts Docker. Adoption requires the existing named volumes and refuses empty replacements. Do not run two definitions concurrently against the same home.
+Legacy migration is available only from the terminal: `./deskharbor import-legacy /path/to/old-workstation`. It supports the earlier workstation layout; it is not a general Docker configuration importer. See [migration guide](docs/migration.md). Importing configuration never starts/restarts Docker. Adoption requires the existing named volumes and refuses empty replacements. Do not run two definitions concurrently against the same home.
 
 ## Acknowledgments
 
