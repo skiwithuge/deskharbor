@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tigervnc-standalone-server tigervnc-tools x11-xserver-utils xauth \
     python3 python3-venv python3-pip python3-numpy python3-websockify \
     fonts-dejavu fonts-liberation xdg-utils libgl1-mesa-dri mesa-utils \
-    libnss3 libasound2t64 libgbm1 libsecret-1-0 gnome-keyring \
+    libnss3 libasound2t64 libgbm1 libvulkan1 libsecret-1-0 gnome-keyring \
     build-essential pkg-config ripgrep tmux unzip xz-utils locales pipx \
     libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev \
     liblzma-dev libncurses-dev libgdbm-dev libgdbm-compat-dev uuid-dev tk-dev libzstd-dev \

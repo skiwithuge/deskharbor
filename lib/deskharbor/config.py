@@ -192,7 +192,8 @@ def compose(root, config):
                    'DISPLAY_HEIGHT': str(c['display']['height']), 'DISPLAY_MODE': c['display']['mode'],
                    'RESTORE_SYSTEM_TOOLS': str(c['restore_tools']).lower(), 'SSH_AUTH_MODE': c['ssh_auth'],
                    'AUDIO_PORT': str(c['ports']['audio']),
-                   'NVIDIA_VISIBLE_DEVICES': 'all' if f['gpu'] else 'void'}
+                   'NVIDIA_VISIBLE_DEVICES': 'all' if f['gpu'] else 'void',
+                   'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility,graphics,video,display' if f['gpu'] else 'compute,utility'}
     environment.update({'ENABLE_' + key: str(value).lower() for key, value in switches.items()})
     volumes = [{'type': 'volume', 'source': 'home', 'target': '/home/' + c['username']},
                {'type': 'volume', 'source': 'ssh_host_keys', 'target': '/var/lib/workstation/ssh'},

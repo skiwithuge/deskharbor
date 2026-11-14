@@ -119,9 +119,9 @@ CPU mode provides the desktop without NVIDIA preparation. To run CUDA workloads:
 
 1. Install an appropriate NVIDIA driver through your Linux distribution's driver tools. Check that `nvidia-smi` works on the host.
 2. Follow [NVIDIA's Container Toolkit installation and Docker configuration guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). Configuring the runtime changes Docker's host configuration; its daemon restart can interrupt existing containers, so schedule it accordingly.
-3. Enable **NVIDIA / CUDA** in DeskHarbor Configuration, save, run Checks and apply. This selects a CUDA development image and requests GPU access. The image's CUDA version must be compatible with your host driver.
+3. Enable **NVIDIA / CUDA** in DeskHarbor Configuration, save, run Checks and apply. This selects a CUDA development image and requests GPU access plus graphics/video driver libraries for Chrome. The image's CUDA version must be compatible with your host driver.
 
-DeskHarbor checks for the host GPU and runtime; it does not install drivers or reconfigure Docker itself. CUDA compute access does not provide accelerated desktop rendering.
+DeskHarbor checks for the host GPU and runtime; it does not install drivers or reconfigure Docker itself. The GNOME/VNC session remains software-rendered. Chrome selects NVIDIA Vulkan when available; verify the renderer in `chrome://gpu` after fully closing and reopening Chrome. GPU-backed WebGL does not establish hardware video codec support.
 
 ## If a step fails
 

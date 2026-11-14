@@ -6,7 +6,7 @@
 
 A persistent, GPU-ready Linux workstation in Docker. Access your desktop, audio, and development tools from different devices while keeping your applications and settings in one place.
 
-DeskHarbor is for a Linux x86-64 Docker host. The thin client can be Linux, macOS, Windows or a phone. CPU mode works without NVIDIA; the optional GPU mode adds a CUDA development image and requires working host NVIDIA drivers and NVIDIA Container Toolkit. Desktop rendering uses software graphics; CUDA compute support does not imply accelerated desktop OpenGL.
+DeskHarbor is for a Linux x86-64 Docker host. The thin client can be Linux, macOS, Windows or a phone. CPU mode works without NVIDIA; the optional GPU mode adds a CUDA development image and requires working host NVIDIA drivers and NVIDIA Container Toolkit. The GNOME/VNC desktop uses software graphics. With NVIDIA mode enabled and graphics driver libraries available, the Chrome launcher selects ANGLE/Vulkan for GPU-backed web content. Other desktop applications do not automatically gain accelerated OpenGL.
 
 ## Start here
 
@@ -48,7 +48,7 @@ The workstation has separate named volumes for home, SSH host keys and Homebrew.
 | Native VNC / Remmina | The same desktop through a published VNC port | 5901 |
 | SSH | CLI tools, terminal and optional port forwarding | 20222 |
 | Audio | Virtual desktop output and authenticated listening page | 6081 |
-| NVIDIA / CUDA | CUDA development base and GPU access | — |
+| NVIDIA / CUDA | CUDA development base, GPU access and NVIDIA graphics libraries | — |
 
 Start in local-only mode and use Status for connection addresses. To connect thin clients, choose Configuration → Network → LAN / VPN. Only enabled services and explicitly configured development ranges are published. DeskHarbor does not configure a router or VPN. HTTP/noVNC, audio HTTP and raw VNC are intended for a trusted LAN/VPN or SSH tunnel; they do not provide transport encryption. SSH public keys are recommended. VNC has an eight-significant-character password limit; the UI requires 6–8 ASCII characters, independently of SSH credentials.
 
@@ -73,6 +73,8 @@ Chrome, Tilix with dark theme, Git, Vim, GitHub CLI and basic development utilit
 The container-user menu installs/updates Sublime Text, Homebrew, nvm/Node/pyenv, Codex desktop, Codex CLI, Antigravity desktop and Antigravity CLI. Installation and updating are distinct operations. Antigravity desktop needs a supplied archive/HTTPS source; app sign-in remains interactive. Packages are downloaded from their publishers; no accounts or credentials are included.
 
 The persistent home retains user tools, configurations and login state. Normal apt additions are recorded in the home and restored after recreation; this reinstalls packages rather than persisting the entire OS filesystem. Homebrew uses its own volume. Custom repositories or binaries placed outside persistent locations should be added to the image. Authentication may still need renewal after recreation.
+
+Chrome automatically uses NVIDIA Vulkan when the GPU and graphics libraries are available, and keeps the existing software path otherwise. Close all Chrome windows and background processes before testing a changed launcher: an existing Chrome process keeps its original graphics settings. Check `chrome://gpu` and the WebGL renderer in the actual application; a detected CUDA device alone is not a browser graphics test. For troubleshooting, launch `DESKHARBOR_BROWSER_RENDERER=nvidia google-chrome` to require the NVIDIA path, or `DESKHARBOR_BROWSER_RENDERER=software google-chrome` to select the software path. The NVIDIA path does not enable SwiftShader or override Chrome's GPU blocklist. Hardware video decoding/encoding depends on codec and browser support and is not established by GPU-backed WebGL.
 
 The workstation user has passwordless sudo **inside the container**. Chrome and the desktop app launcher use `--no-sandbox` for compatibility with this container setup. The workstation is a trusted personal environment, not an isolation boundary for hostile commands.
 

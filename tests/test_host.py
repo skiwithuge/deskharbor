@@ -51,6 +51,8 @@ class HostTests(unittest.TestCase):
         service = self.model()['services']['workstation']
         self.assertEqual(service['build']['args']['BASE_IMAGE'], self.c['cuda_image'])
         self.assertEqual(service['environment']['NVIDIA_VISIBLE_DEVICES'], 'all')
+        self.assertEqual(set(service['environment']['NVIDIA_DRIVER_CAPABILITIES'].split(',')),
+                         {'compute', 'utility', 'graphics', 'video', 'display'})
         self.assertEqual(service['deploy']['resources']['reservations']['devices'][0]['capabilities'], ['gpu'])
 
     def test_key_auth_mounts_public_file_readonly(self):
